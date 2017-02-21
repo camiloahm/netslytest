@@ -22,6 +22,9 @@ import org.jsoup.select.NodeVisitor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Created by camiloh on 2/21/17.
+ */
 public class SlightlySoup {
 
     private Logger log = LoggerFactory.getLogger(SlightlySoup.class);

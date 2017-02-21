@@ -14,29 +14,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+/**
+ * Created by camiloh on 2/21/17.
+ */
 @WebServlet("/")
 public class SlightlyServlet extends HttpServlet {
 
-    private static final long serialVersionUID = 1L;
-
     @Override
-    public void doGet(HttpServletRequest request,
-                      HttpServletResponse response)
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         response.setContentType("text/html");
         response.setBufferSize(8192);
         PrintWriter out = response.getWriter();
-        URL url = getServletContext().getResource("/index.html");
-        String html =  "";
+        URL url = getServletContext().getResource("/app/index.html");
+        String html="";
+
         //Get the file contents
         try (Stream<String> stream = Files.lines(Paths.get(url.getPath()))) {
-            html = stream.reduce("", (a,b) -> a + b);
+            html = stream.reduce("", (a, b) -> a + b);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         //Create instance, parse and write result to OutputStream
         try {
-            out.println(new SlightlySoup().parse(html,request));
+            out.println(new SlightlySoup().parse(html, request));
         } catch (ScriptException e) {
             e.printStackTrace();
         }

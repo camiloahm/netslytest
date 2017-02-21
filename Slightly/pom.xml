@@ -61,5 +61,18 @@
             <artifactId>jsoup</artifactId>
             <version>1.9.2</version>
         </dependency>
+
+        <!--Test Scope-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-junit</artifactId>
+            <version>LATEST</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>
