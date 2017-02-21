@@ -2,6 +2,8 @@ package biz.netcentric.slightly;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -28,11 +30,16 @@ public class SlightlyServlet extends HttpServlet {
         response.setContentType("text/html");
         response.setBufferSize(8192);
         PrintWriter out = response.getWriter();
-        URL url = getServletContext().getResource("/app/index.html");
+        URI url = null;
+        try {
+            url = getServletContext().getResource("/index.html").toURI();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
         String html="";
 
         //Get the file contents
-        try (Stream<String> stream = Files.lines(Paths.get(url.getPath()))) {
+        try (Stream<String> stream = Files.lines(Paths.get(url))) {
             html = stream.reduce("", (a, b) -> a + b);
         } catch (IOException e) {
             e.printStackTrace();
