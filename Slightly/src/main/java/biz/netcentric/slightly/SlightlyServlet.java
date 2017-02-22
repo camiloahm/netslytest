@@ -1,5 +1,9 @@
 package biz.netcentric.slightly;
 
+import biz.netcentric.reader.Resource;
+import biz.netcentric.reader.ResourceReader;
+import biz.netcentric.reader.ResourceReaderDefaultImpl;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URI;
@@ -28,31 +32,19 @@ public class SlightlyServlet extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("text/html");
-        response.setBufferSize(8192);
-        PrintWriter out = response.getWriter();
-        URI url = null;
-        try {
-            url = getServletContext().getResource("/index.html").toURI();
+        String resourcePath = request.getServletPath();
+
+        try (PrintWriter out = response.getWriter()) {
+            URI uri = getServletContext().getResource(resourcePath).toURI();
+            ResourceReader resourceReader = new ResourceReaderDefaultImpl();
+            Resource resource = resourceReader.getResource(uri);
+            //out.println(new SlightlySoup().parse(resource.getHtml(), request));
+            out.println(new HTMLJsoupParser().doParse(resource.getHtml()));
         } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        String html="";
-
-        //Get the file contents
-        try (Stream<String> stream = Files.lines(Paths.get(url))) {
-            html = stream.reduce("", (a, b) -> a + b);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        //Create instance, parse and write result to OutputStream
-        try {
-            out.println(new SlightlySoup().parse(html, request));
-        } catch (ScriptException e) {
-            e.printStackTrace();
-        }
-        //Close OutputStream
-        out.close();
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST,resourcePath+" is incorrect");
+        } /*catch (ScriptException e) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,e.getMessage());
+        }*/
 
     }
 

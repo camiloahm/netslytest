@@ -11,7 +11,7 @@
 
     <servlet-mapping>
         <servlet-name>SlightlyServlet</servlet-name>
-        <url-pattern>/content</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
 </web-app>
