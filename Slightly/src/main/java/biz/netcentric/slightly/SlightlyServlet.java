@@ -38,13 +38,12 @@ public class SlightlyServlet extends HttpServlet {
             URI uri = getServletContext().getResource(resourcePath).toURI();
             ResourceReader resourceReader = new ResourceReaderDefaultImpl();
             Resource resource = resourceReader.getResource(uri);
-            //out.println(new SlightlySoup().parse(resource.getHtml(), request));
-            out.println(new HTMLJsoupParser().doParse(resource.getHtml()));
+            out.println(new SlightlySoup().parse(resource.getHtml(), request));
         } catch (URISyntaxException e) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST,resourcePath+" is incorrect");
-        } /*catch (ScriptException e) {
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,e.getMessage());
-        }*/
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, resourcePath + " is incorrect");
+        } catch (ScriptException e) {
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+        }
 
     }
 
