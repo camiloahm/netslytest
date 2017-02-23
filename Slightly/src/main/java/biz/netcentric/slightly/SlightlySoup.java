@@ -12,6 +12,7 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import javax.servlet.http.HttpServletRequest;
 
+import biz.netcentric.slightly.core.SlightlyParserException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Document;
@@ -64,9 +65,7 @@ public class SlightlySoup {
                     log.info("TextNode: " + textNode.text());
                     textNode.text(expression(textNode.text()));
                 } else {
-                    //Unsupported Types, DO NOTHING
-                    //Comment, DataNode, DocumentType, XmlDeclaration
-                    //FormElement and Document are subclasses of Element
+
                 }
             }
 
