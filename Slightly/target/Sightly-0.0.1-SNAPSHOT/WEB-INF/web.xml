@@ -4,16 +4,6 @@
          metadata-complete="true" version="3.0">
     <display-name>Sightly</display-name>
 
-    <filter>
-        <filter-name>guiceFilter</filter-name>
-        <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>guiceFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
     <servlet>
         <servlet-name>SlightlyServlet</servlet-name>
         <servlet-class>biz.netcentric.slightly.SlightlyServlet</servlet-class>
@@ -21,7 +11,7 @@
 
     <servlet-mapping>
         <servlet-name>SlightlyServlet</servlet-name>
-        <url-pattern>/content</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
 </web-app>
