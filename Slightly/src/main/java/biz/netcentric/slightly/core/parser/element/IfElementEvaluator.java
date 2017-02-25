@@ -31,7 +31,7 @@ public class IfElementEvaluator implements ElementEvaluator {
         try {
             String condition = dataSet.get(IF_TAG);
             if (condition != null && !condition.isEmpty()) {
-                //What does this if resolve to? evaluate in nashorn
+                //Evaluates If expression
                 Boolean dataIf = (Boolean) engine.eval(condition);
                 if (!dataIf) {
                     trash.add(element);

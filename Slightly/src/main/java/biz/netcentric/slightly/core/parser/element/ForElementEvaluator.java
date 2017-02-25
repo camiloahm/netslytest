@@ -21,8 +21,6 @@ public class ForElementEvaluator implements ElementEvaluator {
      * Check for data-for attribute
      * the example data-for-child="person.children"
      * the child variable is implicitly mapped to the items in the collection
-     * referenced in the data for value, i.e. for child in children
-     * notice the code below, neither child nor children is mention, implicit mapping is taking place
      *
      * @param engine
      * @param element
@@ -36,19 +34,19 @@ public class ForElementEvaluator implements ElementEvaluator {
 
         dataSet.forEach((k, v) -> {
             if (k.startsWith(FOR_TAG)) {
-                String implicitItem = k.substring(4, k.length()); //get the suffix of for-*
+                String implicitItem = k.substring(4, k.length());
                 try {
                     List items = (List) engine.eval(v);
-                    //Create the dummy element from a clone and remove its data specific properties
-                    //to prevent subsequent calls on the traverse
                     Element dummy = element.clone();
+                    //remove its data specific properties to avoid new calls
                     dummy.attributes().dataset().clear();
                     element.html("");
                     items.forEach(item -> {
                         Element temp = dummy.clone();
+                        //put {child} in session
                         session.put(implicitItem, item);
                         temp.html(ExpressionResolver.resolveExpression(engine, temp.text()));
-                        element.appendChild(temp);//Add another element after this one
+                        element.appendChild(temp);
                     });
                 } catch (ScriptException e) {
                     throw new IllegalArgumentException("For element cannot be evaluated: \n" + element.html());
