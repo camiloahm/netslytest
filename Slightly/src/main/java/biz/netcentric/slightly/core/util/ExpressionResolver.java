@@ -11,9 +11,8 @@ import java.util.regex.Pattern;
 public class ExpressionResolver {
 
     public static String resolveExpression(ScriptEngine engine, String html) {
-        Pattern el$expression = Pattern.compile("\\$\\{(\\w+)\\.?(\\w+)\\}");
-        //String html ="<h1 title=\"${person.name}\">${person.name} ${person}</h1>";
-        Matcher action = el$expression.matcher(html);
+        Pattern elExpression = Pattern.compile("\\$\\{(\\w+)\\.?(\\w+)\\}");
+        Matcher action = elExpression.matcher(html);
         StringBuffer sb = new StringBuffer(html.length());
         while (action.find()) {
             String text = action.group(0);
@@ -23,6 +22,8 @@ public class ExpressionResolver {
                 action.appendReplacement(sb, Matcher.quoteReplacement(eval));
             } catch (ScriptException e) {
                throw new IllegalArgumentException("Expression cannot be resolved "+ html);
+            } catch (NullPointerException e){
+                throw new IllegalArgumentException("Value does not exist "+ html);
             }
         }
         action.appendTail(sb);

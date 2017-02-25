@@ -5,27 +5,46 @@
     <artifactId>Sightly</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
+    <description>Sightly by Camilo Hernández</description>
+
+
+    <properties>
+        <javaee.version>7.0</javaee.version>
+        <slf4j.version>1.7.5</slf4j.version>
+        <guice.version>4.1.0</guice.version>
+        <jsoup.version>LATEST</jsoup.version>
+        <java.version>1.8</java.version>
+        <junit.version>4.12</junit.version>
+        <hamcrest.version>LATEST</hamcrest.version>
+        <mockito.version>LATEST</mockito.version>
+        <mavencompilerplugin.version>2.0.2</mavencompilerplugin.version>
+        <mavenjettyplugin.version>6.1.10</mavenjettyplugin.version>
+        <mavenjettyplugin.port>8080</mavenjettyplugin.port>
+    </properties>
+
+
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.0.2</version>
+                <version>${mavencompilerplugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
-                <version>6.1.10</version>
+                <version>${mavenjettyplugin.version}</version>
                 <configuration>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                     <connectors>
                         <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-                            <port>8080</port>
+                            <port>${mavenjettyplugin.port}</port>
                             <maxIdleTime>60000</maxIdleTime>
                         </connector>
                     </connectors>
@@ -38,41 +57,49 @@
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
-            <version>7.0</version>
+            <version>${javaee.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
-            <version>4.1.0</version>
+            <version>${guice.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.inject.extensions</groupId>
             <artifactId>guice-servlet</artifactId>
-            <version>4.1.0</version>
+            <version>${guice.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.5</version>
+            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
-            <version>LATEST</version>
+            <version>${jsoup.version}</version>
         </dependency>
 
         <!--Test Scope-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-junit</artifactId>
-            <version>LATEST</version>
+            <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 </project>
