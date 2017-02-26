@@ -8,6 +8,8 @@ import javax.script.ScriptException;
 import java.util.List;
 
 /**
+ * Evaluates <script> elements
+ * <p>
  * Created by dev-camiloh on 2/24/17.
  */
 public class ScriptElementEvaluator implements ElementEvaluator {

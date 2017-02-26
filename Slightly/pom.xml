@@ -41,6 +41,7 @@
                 <artifactId>maven-jetty-plugin</artifactId>
                 <version>${mavenjettyplugin.version}</version>
                 <configuration>
+                    <contextPath>/</contextPath>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                     <connectors>
                         <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">

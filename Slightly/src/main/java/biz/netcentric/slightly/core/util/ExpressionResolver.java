@@ -6,6 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * Can solve $-expressions
+ *
  * Created by dev-camiloh on 2/24/17.
  */
 public class ExpressionResolver {

@@ -1,8 +1,5 @@
 package biz.netcentric.slightly.core.reader;
 
-import biz.netcentric.slightly.core.reader.Resource;
-import biz.netcentric.slightly.core.reader.ResourceReader;
-
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
@@ -10,6 +7,8 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 /**
+ * Reads resources, for this case index.html
+ * With Adobe expirience manager you can upload resources
  * Created by dev-camiloh on 2/21/17.
  */
 public class ResourceReaderDefaultImpl implements ResourceReader {

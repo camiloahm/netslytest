@@ -14,7 +14,7 @@ import java.util.List;
 public class AttributeElementEvaluator implements ElementEvaluator {
 
     /**
-     * transform all attributes according to el-expressions
+     * transform all attributes according to $-expressions
      *
      * @param engine
      * @param element

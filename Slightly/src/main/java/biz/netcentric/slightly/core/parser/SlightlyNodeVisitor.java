@@ -11,6 +11,11 @@ import javax.script.ScriptEngine;
 import java.util.List;
 
 /**
+ * Provide an Slightly implementing class to Jsoup NodeTraversor to iterate through nodes.
+ * The head method is called when the node is first seen,
+ * and the tail method when all of the node's children have been visited
+ * <p>
+ *
  * Created by dev-camiloh on 2/24/17.
  */
 public class SlightlyNodeVisitor implements NodeVisitor {
@@ -22,7 +27,7 @@ public class SlightlyNodeVisitor implements NodeVisitor {
     public SlightlyNodeVisitor(ScriptEngine engine, List<ElementEvaluator> elementEvaluator, List<Node> trash) {
         this.engine = engine;
         this.elementEvaluator = elementEvaluator;
-        this.trash=trash;
+        this.trash = trash;
     }
 
     @Override
@@ -30,7 +35,7 @@ public class SlightlyNodeVisitor implements NodeVisitor {
         if (node instanceof Element) {
             Element element = (Element) node;
             for (ElementEvaluator x : elementEvaluator)
-                x.evalElement(engine, element,trash);
+                x.evalElement(engine, element, trash);
 
         } else if (node instanceof TextNode) {
             TextNode textNode = (TextNode) node;
